@@ -10,6 +10,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>k-eureka</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>eureka-server</module>
+        <module>eureka-ad</module>
+        <module>eureka-creative</module>
+        <module>eureka-server-cluster</module>
+    </modules>
 
 
 </project>
