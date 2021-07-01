@@ -12,6 +12,7 @@
         <module>k-eureka</module>
         <module>k-spring-cloud-gateway</module>
         <module>k-start</module>
+        <module>apache-lib</module>
     </modules>
 
 
