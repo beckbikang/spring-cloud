@@ -17,12 +17,6 @@
         <module>test-start-demo</module>
     </modules>
 
-    <properties>
-        <spring-boot-version>2.5.2</spring-boot-version>
-        <lombok-version>1.18.20</lombok-version>
-        <junit-version>4.13.2</junit-version>
-        <start-version>1.0-SNAPSHOT</start-version>
-    </properties>
 
     <dependencies>
 
@@ -69,23 +63,6 @@
         </dependency>
         <!--springboot end-->
 
-        <!-- tools  start -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok-version}</version>
-        </dependency>
-        <!-- tools  end -->
-
-
-        <!-- test lib  start -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit-version}</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- test lib end -->
 
 
     </dependencies>
