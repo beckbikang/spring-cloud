@@ -14,6 +14,7 @@
         <module>k-start</module>
         <module>apache-lib</module>
         <module>k-guava</module>
+        <module>k-ribbon</module>
     </modules>
 
     <properties>

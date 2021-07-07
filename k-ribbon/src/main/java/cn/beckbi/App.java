@@ -1,0 +1,18 @@
+package cn.beckbi;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * @program: spring-cloud
+ * @description:
+ * @author: bikang
+ * @create: 2021-07-07 21:54
+ */
+@SpringBootApplication
+public class App {
+
+    public static void main(String[] args) {
+        SpringApplication.run(App.class, args);
+    }
+}

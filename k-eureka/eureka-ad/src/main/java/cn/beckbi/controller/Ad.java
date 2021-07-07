@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Ad {
 
+
+    @GetMapping("hi")
+    public String hello(){
+        return "hi";
+    }
+
     @GetMapping("ad/list")
     public String list(){
         return "list";
