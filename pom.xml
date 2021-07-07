@@ -15,6 +15,21 @@
         <module>apache-lib</module>
         <module>k-guava</module>
         <module>k-ribbon</module>
+        <module>k-feign</module>
+        <module>k-histrix</module>
+        <module>k-zuul</module>
+        <module>k-apollo</module>
+        <module>k-sleuth</module>
+        <module>k-security</module>
+        <module>k-admin</module>
+        <module>k-swagger</module>
+        <module>k-distributed-transaction</module>
+        <module>k-cron</module>
+        <module>k-consul</module>
+        <module>k-sharding-jdbc</module>
+        <module>k-grpc</module>
+        <module>k-dubbo</module>
+        <module>k-ddd</module>
     </modules>
 
     <properties>
