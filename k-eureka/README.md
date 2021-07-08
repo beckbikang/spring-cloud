@@ -43,7 +43,7 @@ Peer to Peer架构，对等复制
 * 服务端依赖client，每个server又是其他server的client，使用header_replication区分请求操作
 与普通应用实例的正常请求，通过心跳检查复制不一致问题
 
-eureka支持zone
+eureka支持zone和region
 
 
 
