@@ -1,6 +1,6 @@
 package cn.beckbi.fallback;
 
-import cn.beckbi.service.HelloFeginService;
+import cn.beckbi.service.HelloFeignService;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @create: 2021-07-10 18:27
  */
 @Component
-public class HelloFeginServiceFallback implements HelloFeginService {
+public class HelloFeignServiceFallback implements HelloFeignService {
 
     @Override
     public String hello(@RequestParam("source") String queryStr){

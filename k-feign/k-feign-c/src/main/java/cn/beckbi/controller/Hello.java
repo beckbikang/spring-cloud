@@ -1,8 +1,7 @@
 package cn.beckbi.controller;
 
-import cn.beckbi.service.HelloFeginService;
-import cn.beckbi.service.SimpleFeginService;
-import org.springframework.beans.factory.annotation.Autowired;
+import cn.beckbi.service.HelloFeignService;
+import cn.beckbi.service.SimpleFeignService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,19 +17,19 @@ import javax.annotation.Resource;
 public class Hello {
 
     @Resource
-    HelloFeginService helloFeginService;
+    HelloFeignService helloFeignService;
 
     @Resource
-    SimpleFeginService simpleFeginService;
+    SimpleFeignService simpleFeignService;
 
     @GetMapping("/hi")
     public String hi(){
-        return helloFeginService.hello("http");
+        return helloFeignService.hello("http");
     }
 
     @GetMapping("/hi/eureka")
     public String hiEureka(){
-        return simpleFeginService.hello("eureka");
+        return simpleFeignService.hello("eureka");
     }
 
 
