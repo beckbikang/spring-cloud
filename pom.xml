@@ -4,102 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>beckbi.cn</groupId>
+    <groupId>cn.beckbi</groupId>
     <artifactId>spring-cloud</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>k-eureka</module>
-        <module>k-spring-cloud-gateway</module>
-        <module>k-start</module>
-        <module>apache-lib</module>
-        <module>k-guava</module>
-        <module>k-ribbon</module>
-        <module>k-histrix</module>
-        <module>k-zuul</module>
-        <module>k-apollo</module>
-        <module>k-sleuth</module>
-        <module>k-security</module>
-        <module>k-admin</module>
-        <module>k-swagger</module>
-        <module>k-distributed-transaction</module>
-        <module>k-cron</module>
-        <module>k-consul</module>
-        <module>k-sharding-jdbc</module>
-        <module>k-grpc</module>
-        <module>k-dubbo</module>
-        <module>k-ddd</module>
-        <module>k-fegin</module>
+        <module>keureka</module>
     </modules>
 
-    <properties>
-        <spring-boot-version>2.5.2</spring-boot-version>
-        <lombok-version>1.18.20</lombok-version>
-        <junit-version>4.13.2</junit-version>
-        <start-version>1.0-SNAPSHOT</start-version>
-        <guava-version>30.1.1-jre</guava-version>
-        <goson-version>2.8.7</goson-version>
-        <jackson-version>2.12.4</jackson-version>
-    </properties>
-
-
-    <dependencies>
-
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson-version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>${jackson-version}</version>
-        </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson-version}</version>
-        </dependency>
-
-
-        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>${goson-version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${guava-version}</version>
-        </dependency>
-
-
-        <!-- tools  start -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok-version}</version>
-        </dependency>
-        <!-- tools  end -->
-
-
-        <!-- test lib  start -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit-version}</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- test lib end -->
-    </dependencies>
 
 </project>
