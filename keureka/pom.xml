@@ -11,6 +11,8 @@
     <modules>
         <module>keureka-server1</module>
         <module>keureka-server2</module>
+        <module>keureka-user</module>
+        <module>keureka-front</module>
     </modules>
 
     <properties>
