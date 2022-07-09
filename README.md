@@ -1,11 +1,17 @@
 # java common software practice
 
-## 1 常用的库
+## 1 common library
 
-## 2 spring-cloud体系
+- rxjava
+- zookeeper
 
 
-## 3 领域驱动DDD
+## 2 spring-cloud Microservices
+
+- spring-boot-starter
+- eureka-server and eureka-client
+
+## 3 Domain Driven Architecture
 
 
 
