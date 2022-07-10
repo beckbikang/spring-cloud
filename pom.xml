@@ -12,6 +12,7 @@
         <module>keureka</module>
         <module>registration</module>
         <module>kstart</module>
+        <module>kvertx</module>
     </modules>
 
 
