@@ -14,7 +14,7 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class RestConfig {
 
-    
+
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();

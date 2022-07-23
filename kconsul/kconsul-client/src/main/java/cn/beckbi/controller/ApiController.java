@@ -1,6 +1,6 @@
 package cn.beckbi.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -18,8 +18,6 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 @RestController
 public class ApiController {
-
-    private ObjectMapper mapper = new ObjectMapper();
 
 
     @Autowired
