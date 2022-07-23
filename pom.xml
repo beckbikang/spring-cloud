@@ -13,6 +13,7 @@
         <module>registration</module>
         <module>kstart</module>
         <module>kvertx</module>
+        <module>kconsul</module>
     </modules>
 
 
