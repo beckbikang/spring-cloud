@@ -1,12 +1,16 @@
 package cn.beckbi.user.front.controller;
 
+import cn.beckbi.user.front.config.feign.api.UserInfoClientApi;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import com.netflix.discovery.EurekaClient;
+
+import javax.annotation.Resource;
 
 /**
  * @program: spring-cloud
@@ -29,6 +33,8 @@ public class FrontController {
     @Autowired
     private EurekaClient eurekaClient;
 
+    @Resource
+    private UserInfoClientApi userInfoClientApi;
 
     @GetMapping("/info1")
     public Object info1() {
@@ -52,6 +58,11 @@ public class FrontController {
     public String front2() {
         return restTemplate.getForObject(
                 "http://eureka-client-user/user/2", String.class);
+    }
+
+    @GetMapping("/front3")
+    public String front3() {
+        return userInfoClientApi.info(3);
     }
 
 }
