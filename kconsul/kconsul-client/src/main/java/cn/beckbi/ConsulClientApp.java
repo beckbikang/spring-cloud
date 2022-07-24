@@ -1,21 +1,19 @@
-package cn.beckbi.user.front;
+package cn.beckbi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
 
 /**
  * @program: spring-cloud
  * @description:
  * @author: bikang
- * @create: 2022-07-17 23:10
+ * @create: 2022-07-23 23:02
  */
-@EnableFeignClients(basePackages="cn.beckbi")
-@EnableDiscoveryClient
 @SpringBootApplication
-public class FrontApp {
+@EnableDiscoveryClient
+public class ConsulClientApp {
     public static void main(String[] args) {
-        SpringApplication.run(FrontApp.class, args);
+        SpringApplication.run(ConsulClientApp.class, args);
     }
 }
