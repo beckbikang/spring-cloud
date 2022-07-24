@@ -10,6 +10,10 @@
 
 - spring-boot-starter
 - eureka-server and eureka-client
+- ribbon
+- feign 
+- zipkin
+- sleuth
 
 ## 3 Domain Driven Architecture
 
