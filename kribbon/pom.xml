@@ -16,6 +16,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>kribbon-native</module>
+        <module>kopenfeign</module>
     </modules>
 
     <properties>
