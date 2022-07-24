@@ -1,6 +1,6 @@
 <!-- Logback configuration. See http://logback.qos.ch/manual/index.html -->
 <configuration scan="true" scanPeriod="10 seconds" debug="false">
-    <property name="LOG_PATH" value="/tmp/keureka-user" />
+    <property name="LOG_PATH" value="/tmp/eureka-client-user" />
 
 
     <!--控制台输出 -->
