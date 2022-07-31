@@ -17,6 +17,7 @@
         <module>kribbon</module>
         <module>ksearch</module>
         <module>ksleuth</module>
+        <module>ksharding</module>
     </modules>
 
 

@@ -4,6 +4,10 @@
 
 - rxjava
 - zookeeper
+- sharding-jdbc
+    - Read write separation database
+    - force master database
+    - separation database and separation table
 
 
 ## 2 spring-cloud Microservices
