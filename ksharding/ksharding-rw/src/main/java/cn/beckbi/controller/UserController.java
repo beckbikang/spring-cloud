@@ -32,6 +32,11 @@ public class UserController {
         return ResultBuilder.builderResp(userService.getByIdFromMaster(id));
     }
 
+    @GetMapping(value = "/db11/{id}")
+    public Response<User> getMaster2User1(@PathVariable("id") Long id)   throws JsonProcessingException {
+        return ResultBuilder.builderResp(userService.getByIdFromMaster2(id));
+    }
+
     @GetMapping(value = "/db2/{id}")
     public Response<User> getSlaveUser2(@PathVariable("id") Long id)   throws JsonProcessingException {
         return ResultBuilder.builderResp(userService.getByIdFromSlave(id));

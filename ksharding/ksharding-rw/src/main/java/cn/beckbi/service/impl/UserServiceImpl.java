@@ -1,5 +1,6 @@
 package cn.beckbi.service.impl;
 
+import cn.beckbi.aop.ShardingJdbcMaster;
 import cn.beckbi.dao.UserMapper;
 import cn.beckbi.model.User;
 import cn.beckbi.service.UserService;
@@ -39,6 +40,12 @@ public class UserServiceImpl implements UserService {
             }
             return user;
         }).orElse(null);
+    }
+
+    @ShardingJdbcMaster
+    @Override
+    public User getByIdFromMaster2(Long id) {
+        return userMapper.getUserById(id);
     }
 
     /**
