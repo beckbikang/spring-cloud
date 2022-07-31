@@ -17,6 +17,14 @@ public interface UserService {
     User getByIdFromMaster(Long id);
 
     /**
+     * master获取数据
+     * @param id Long
+     * @return User
+     */
+    User getByIdFromMaster2(Long id);
+
+
+    /**
      * slave获取数据
      * @param id Long
      * @return User

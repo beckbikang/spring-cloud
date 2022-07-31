@@ -1,5 +1,6 @@
 package cn.beckbi.service.impl;
 
+import cn.beckbi.aop.ShardingJdbcMaster;
 import cn.beckbi.dao.UserMapper;
 import cn.beckbi.model.User;
 import cn.beckbi.service.UserService;
@@ -29,14 +30,22 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User getByIdFromMaster(Long id) {
-        User user = null;
 
-        HintManager.clear();
-        try (HintManager hintManager = HintManager.getInstance()) {
-            hintManager.setMasterRouteOnly();
-            user = userMapper.getUserById(id);
-        }
-        return user;
+        return Optional.ofNullable(id).map(uid -> {
+            User user = null;
+            HintManager.clear();
+            try (HintManager hintManager = HintManager.getInstance()) {
+                hintManager.setMasterRouteOnly();
+                user = userMapper.getUserById(uid);
+            }
+            return user;
+        }).orElse(null);
+    }
+
+    @ShardingJdbcMaster
+    @Override
+    public User getByIdFromMaster2(Long id) {
+        return userMapper.getUserById(id);
     }
 
     /**
