@@ -29,14 +29,16 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User getByIdFromMaster(Long id) {
-        User user = null;
 
-        HintManager.clear();
-        try (HintManager hintManager = HintManager.getInstance()) {
-            hintManager.setMasterRouteOnly();
-            user = userMapper.getUserById(id);
-        }
-        return user;
+        return Optional.ofNullable(id).map(uid -> {
+            User user = null;
+            HintManager.clear();
+            try (HintManager hintManager = HintManager.getInstance()) {
+                hintManager.setMasterRouteOnly();
+                user = userMapper.getUserById(uid);
+            }
+            return user;
+        }).orElse(null);
     }
 
     /**
