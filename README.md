@@ -34,7 +34,7 @@
 ## example
 
 
-use spring aop force database mysql in sharding-jdbc
+use spring aop force master database mysql in sharding-jdbc
 
 ```java
 @ShardingJdbcMaster
