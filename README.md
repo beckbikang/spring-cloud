@@ -31,6 +31,19 @@
 
 
 
+## example
+
+
+use spring aop force database mysql in sharding-jdbc
+
+```java
+@ShardingJdbcMaster
+@Override
+public User getByIdFromMaster2(Long id) {
+    return userMapper.getUserById(id);
+}
+```
+
 
 
 
