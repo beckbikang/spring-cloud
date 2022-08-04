@@ -37,10 +37,13 @@
 use spring aop force master database mysql in sharding-jdbc
 
 ```java
-@ShardingJdbcMaster
-@Override
-public User getByIdFromMaster2(Long id) {
-    return userMapper.getUserById(id);
+Class Test {
+
+    @ShardingJdbcForceMaster
+    @Override
+    public User getByIdFromMaster2(Long id) {
+        return userMapper.getUserById(id);
+    }
 }
 ```
 
