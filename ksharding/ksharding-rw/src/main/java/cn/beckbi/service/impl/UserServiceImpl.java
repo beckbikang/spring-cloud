@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
             HintManager.clear();
             try (HintManager hintManager = HintManager.getInstance()) {
                 hintManager.setWriteRouteOnly();
-                user = userMapper.getUserById(uid);
+                user = userMapper.getUserById2(uid);
             }
             return user;
         }).orElse(null);
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     @ShardingJdbcForceMaster
     @Override
     public User getByIdFromMaster2(Long id) {
-        return userMapper.getUserById(id);
+        return userMapper.getUserById2(id);
     }
 
     /**
@@ -54,6 +54,6 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public User getByIdFromSlave(Long id) {
-        return userMapper.getUserById(id);
+        return userMapper.getUserById2(id);
     }
 }
