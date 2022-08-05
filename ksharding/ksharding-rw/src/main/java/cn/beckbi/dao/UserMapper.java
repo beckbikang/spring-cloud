@@ -9,5 +9,5 @@ import cn.beckbi.model.User;
  * @create: 2022-07-31 17:42
  */
 public interface UserMapper {
-    User getUserById(long id);
+    User getUserById2(Long id);
 }
