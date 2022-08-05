@@ -26,24 +26,24 @@ public class ShardingAop {
     public Object master(ProceedingJoinPoint joinPoint){
         Object[] args = joinPoint.getArgs();
         Object ret = null;
-        MethodSignature ms = (MethodSignature) joinPoint.getSignature();
-        Method md = ms.getMethod();
-        ShardingJdbcForceMaster shardingJdbcForceMaster = md.getAnnotation(ShardingJdbcForceMaster.class);
-        HintManager hm = null;
+        MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
+        Method method = methodSignature.getMethod();
+        ShardingJdbcForceMaster shardingJdbcForceMaster = method.getAnnotation(ShardingJdbcForceMaster.class);
+        HintManager hintManager = null;
         try {
             if (Objects.nonNull(shardingJdbcForceMaster)) {
                 HintManager.clear();
-                hm = HintManager.getInstance();
-                hm.setWriteRouteOnly();
+                hintManager = HintManager.getInstance();
+                hintManager.setWriteRouteOnly();
             }
             ret = joinPoint.proceed(args);
         }catch (Exception ex){
-            log.error("exception ShardingAop",ex);
+            log.error("exception",ex);
         }catch (Throwable ex2){
-            log.error("Throwable ShardingAop",ex2);
+            log.error("Throwable",ex2);
         }finally {
-            if (Objects.nonNull(shardingJdbcForceMaster) && Objects.nonNull(hm)) {
-                hm.close();
+            if (Objects.nonNull(shardingJdbcForceMaster) && Objects.nonNull(hintManager)) {
+                hintManager.close();
             }
         }
         return ret;

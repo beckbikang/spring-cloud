@@ -1,14 +1,13 @@
 package cn.beckbi.service.impl;
 
-import cn.beckbi.aop.ShardingJdbcMaster;
+import cn.beckbi.aop.ShardingJdbcForceMaster;
 import cn.beckbi.dao.UserMapper;
 import cn.beckbi.model.User;
 import cn.beckbi.service.UserService;
-import org.apache.shardingsphere.api.hint.HintManager;
+import org.apache.shardingsphere.infra.hint.HintManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.Optional;
 
 /**
@@ -35,14 +34,14 @@ public class UserServiceImpl implements UserService {
             User user = null;
             HintManager.clear();
             try (HintManager hintManager = HintManager.getInstance()) {
-                hintManager.setMasterRouteOnly();
+                hintManager.setWriteRouteOnly();
                 user = userMapper.getUserById(uid);
             }
             return user;
         }).orElse(null);
     }
 
-    @ShardingJdbcMaster
+    @ShardingJdbcForceMaster
     @Override
     public User getByIdFromMaster2(Long id) {
         return userMapper.getUserById(id);

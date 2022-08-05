@@ -15,6 +15,8 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>ksharding-rw</module>
+        <module>ksharding-db-table</module>
+        <module>ksharding-table</module>
     </modules>
 
     <properties>
@@ -29,7 +31,7 @@
         <jackson-version>2.12.4</jackson-version>
         <mysql-mysql-version>8.0.28</mysql-mysql-version>
         <mybatis-spring-boot-starte-version>2.2.2</mybatis-spring-boot-starte-version>
-        <sharding-jdbc-spring-boot-starter.version>4.1.1</sharding-jdbc-spring-boot-starter.version>
+        <sharding-jdbc-spring-boot-starter-version>5.1.2</sharding-jdbc-spring-boot-starter-version>
     </properties>
 
 
@@ -62,13 +64,14 @@
     <dependencyManagement>
         <dependencies>
 
-            <!--
+
             <dependency>
                 <groupId>org.apache.shardingsphere</groupId>
                 <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
-                <version>${sharding-jdbc-spring-boot-starter.version}</version>
+                <version>${sharding-jdbc-spring-boot-starter-version}</version>
             </dependency>
-            -->
+
+            <!--
             <dependency>
                 <groupId>org.apache.shardingsphere</groupId>
                 <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
@@ -79,6 +82,7 @@
                 <artifactId>sharding-jdbc-spring-namespace</artifactId>
                 <version>${sharding-jdbc-spring-boot-starter.version}</version>
             </dependency>
+            -->
 
 
             <dependency>
