@@ -4,7 +4,6 @@ package cn.beckbi.algo;
 import org.apache.shardingsphere.sharding.api.sharding.standard.PreciseShardingValue;
 import org.apache.shardingsphere.sharding.api.sharding.standard.RangeShardingValue;
 import org.apache.shardingsphere.sharding.api.sharding.standard.StandardShardingAlgorithm;
-import org.apache.shardingsphere.sharding.spi.ShardingAlgorithm;
 
 import java.util.Collection;
 import java.util.Properties;
@@ -12,19 +11,22 @@ import java.util.Properties;
 
 public class OrderSingleKeyTableShardingAlgorithm implements StandardShardingAlgorithm<Long> {
 
+    /**
+     *
+     *
+     * @param tableNames Collection<String>
+     * @param shardingValue PreciseShardingValue<Long>
+     * @return String
+     */
     @Override
     public String doSharding(Collection<String> tableNames, PreciseShardingValue<Long> shardingValue) {
-
-        int tableSize = tableNames.size();
-
-        long size = shardingValue.getValue()/10;
-        String target_table_name = "order_" + size%tableSize;
-
+        String targetTableName = "order_" + (shardingValue.getValue()%tableNames.size());
         for (String tableName : tableNames) {
-            if (tableName.equals(target_table_name)) {
+            if (tableName.equals(targetTableName)) {
                 return tableName;
             }
         }
+        //此处应该抛出异常
         return "";
     }
 

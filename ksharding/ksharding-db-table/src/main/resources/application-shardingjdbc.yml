@@ -1,0 +1,70 @@
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  shardingsphere:
+    datasource:
+      names: ds0,ds1
+      ds0:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+        pool-name: HikariPool-1
+        minimum-idle: 1
+        maximum-pool-size: 5
+        idle-timeout: 600000
+        max-lifetime: 1200000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+        username: root
+        password: 123456
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/db3?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+      ds1:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        type: com.zaxxer.hikari.HikariDataSource
+        pool-name: HikariPool-2
+        minimum-idle: 1
+        maximum-pool-size: 5
+        idle-timeout: 600000
+        max-lifetime: 1200000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+        username: root
+        password: 123456
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/db4?allowPublicKeyRetrieval=true&useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    rules:
+      sharding:
+        binding-tables:
+          - order
+        tables:
+          order:
+            actual-data-nodes: ds$->{0..1}.order_$->{0..3}
+            database-strategy:
+              standard:
+                sharding-column: uid
+                sharding-algorithm-name: db-inline
+            table-strategy:
+              standard:
+                sharding-column: uid
+                sharding-algorithm-name: order-table-partion
+        sharding-algorithms:
+          db-inline:
+            type: INLINE
+            props:
+              strategy: STANDARD
+              algorithm-expression: ds$->{uid % 2}
+          order-table-partion:
+            type: INLINE
+            props:
+              strategy: STANDARD
+              algorithm-expression: order_$->{uid % 4 }
+          #order-table-partion:
+          #  type: CLASS_BASED
+          #  props:
+          #    strategy: STANDARD
+          #    algorithmClassName: cn.beckbi.algo.OrderSingleKeyTableShardingAlgorithm
+        load-balancers:
+          round_robin:
+            type: ROUND_ROBIN
+    props:
+      sql-show: true
+      check-table-metadata-enabled: false
+
