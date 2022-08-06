@@ -1,4 +1,4 @@
-create database db3;
+create database db0;
 CREATE TABLE `order_1` (
   `id` bigint NOT NULL COMMENT '主键ID',
   `uid` bigint NOT NULL COMMENT 'uid',

@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: ksharding-sharding-database
+  profiles:
+    include: shardingjdbc
+server:
+  port: 7315
+debug: true
+
+logging:
+    level:
+      org:
+        apache:
+          ibatis: debug
+      com:
+        mysql:
+          cj: debug
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:/mapper2/*.xml
+  type-aliases-package: cn.beckbi.model
+management:
+  health:
+    db:
+      enabled: false

@@ -12,9 +12,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @MapperScan("cn.beckbi.dao")
 @SpringBootApplication
-public class TableApplication {
+public class DatabaseTableShardingApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(TableApplication.class, args);
+        SpringApplication.run(DatabaseTableShardingApplication.class, args);
     }
 }
