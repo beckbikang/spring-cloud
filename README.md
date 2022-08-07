@@ -18,6 +18,9 @@
     - eureka支持认证
 - ribbon
     - ribbon的基础使用
+- hystrix
+    - 基本的使用
+    - 在web上的使用
 - feign 
     - feign集成在spring-cloud的使用
     - 原生的feign的使用
