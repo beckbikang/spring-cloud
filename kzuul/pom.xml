@@ -18,6 +18,7 @@
         <module>zuul-eureka</module>
         <module>zuul-gateway</module>
         <module>zuul-user</module>
+        <module>zuul-gateway-dynamic</module>
     </modules>
 
     <properties>
