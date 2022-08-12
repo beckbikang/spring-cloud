@@ -18,6 +18,7 @@
         <module>ksearch</module>
         <module>ksharding</module>
         <module>khystrix</module>
+        <module>kzuul</module>
     </modules>
 
 
