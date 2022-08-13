@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    @GetMapping("/abc/{id}")
+    @GetMapping("/a/{id}")
     public String info(@PathVariable String id) {
        return "ok:"+id;
     }
