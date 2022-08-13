@@ -27,6 +27,10 @@ eureka所有服务的信息
 
 ## zuul网关转发 
 
+查看所有routers的配置
+- http://localhost:9011/actuator/routes
+- http://localhost:9011/actuator/filters
+
 
 1. 访问服务：
 - http://localhost:9011/abc/123
@@ -59,6 +63,11 @@ zuul.routes.userinfo.customSensitiveHeaders=true
 ```
 
 5. 自定义过滤器
+- pre 请求被路由之前调用
+- route 请求路由时调用
+- post 在route和error过滤器之后调用
+- error 在请求发生错误时调用
+
 
 
 

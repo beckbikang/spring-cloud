@@ -17,4 +17,9 @@ public class TestController {
     public String info(@PathVariable String id) {
        return "ok:"+id;
     }
+
+    @GetMapping("/error")
+    public String error() {
+        return "{\"code\":-2,\"msg\":\"路由出现错误\"}";
+    }
 }

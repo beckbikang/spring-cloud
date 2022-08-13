@@ -1,5 +1,7 @@
-package cn.beckbi.filter;
+package cn.beckbi.config;
 
+import cn.beckbi.filter.ErrorFilter;
+import cn.beckbi.filter.SpecialPathFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,5 +17,10 @@ public class ZuulFilterConfig {
     @Bean
     public SpecialPathFilter specialPathFilter() {
         return new SpecialPathFilter();
+    }
+
+    @Bean
+    public ErrorFilter errorFilter() {
+        return new ErrorFilter();
     }
 }
