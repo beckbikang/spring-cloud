@@ -58,6 +58,7 @@ zuul.routes.userinfo.sensitive-headers=true
 zuul.routes.userinfo.customSensitiveHeaders=true
 ```
 
+5. 自定义过滤器
 
 
 
