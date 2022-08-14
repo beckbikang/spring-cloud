@@ -1,5 +1,6 @@
 package cn.beckbi.controller;
 
+import cn.beckbi.route.DynamicRouteLocator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,31 +19,27 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @Autowired
-    StringRedisTemplate stringRedisTemplate;
+    private StringRedisTemplate stringRedisTemplate;
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
-    @Data
-    public static class UserInfo {
-        private String name;
-        private Long uid;
-    }
 
-    @GetMapping("/set/{uid}")
-    public String info(@PathVariable long uid) throws Exception{
-        String key = "test#"+uid;
+    @Autowired
+    private DynamicRouteLocator dynamicRouteLocator;
 
-        UserInfo userInfo = new UserInfo();
-        userInfo.setName(key);
-        userInfo.setUid(uid);
-
-        stringRedisTemplate.opsForValue().set(key, objectMapper.writeValueAsString(userInfo));
-
+    @GetMapping("/setRoute")
+    public String setRoute() throws Exception{
         String value = "[{\"id\":1,\"path\":\"/abc/**\",\"serviceId\":\"\",\"url\":\"http://www.example.com/\",\"stripPrefix\":false,\"retryable\":true,\"customSensitiveHeaders\":false},{\"id\":2,\"path\":\"/user/**\",\"serviceId\":\"zuul-user\",\"url\":\"\",\"stripPrefix\":false,\"retryable\":true,\"customSensitiveHeaders\":false}]";
-        stringRedisTemplate.opsForValue().set("LOCAL_ZUUL_RULES_REDIS_KEY", value);
-
-        return stringRedisTemplate.opsForValue().get(key) +" "+stringRedisTemplate.opsForValue().get("LOCAL_ZUUL_RULES_REDIS_KEY");
+        stringRedisTemplate.opsForValue().set(
+                DynamicRouteLocator.getRouteKey(),
+                value
+        );
+        return "ok";
     }
 
+    @GetMapping("/refresh")
+    public String refresh() throws Exception{
+        dynamicRouteLocator.refresh();;
+        return "ok";
+    }
 
 
 
