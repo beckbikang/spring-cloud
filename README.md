@@ -24,6 +24,9 @@
 - feign 
     - feign集成在spring-cloud的使用
     - 原生的feign的使用
+- zuul
+    - zuul网关的基本使用
+    - zuul的动态路由
 - zipkin和sleuth
     - 做链路追踪
 
