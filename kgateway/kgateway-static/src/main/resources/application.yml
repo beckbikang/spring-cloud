@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: ksharding-rw
+  profiles:
+    include: shardingjdbc
+server:
+  port: 10011
+debug: true
+
+logging:
+    level:
+      org:
+        apache:
+          ibatis: debug
+      com:
+        mysql:
+          cj: debug
+management:
+  health:
+    db:
+      enabled: false
