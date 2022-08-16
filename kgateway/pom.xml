@@ -46,8 +46,24 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok-version}</version>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
+
+
+    <!--
+    <repositories>
+        <repository>
+            <id>redhat</id>
+            <name>redhat-maven</name>
+            <url>https://maven.repository.redhat.com/ga/</url>
+        </repository>
+        <repository>
+            <id>aliyun</id>
+            <name>nexus-aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        </repository>
+
+    </repositories>
+    -->
 
 </project>
