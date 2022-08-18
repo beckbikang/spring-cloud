@@ -37,5 +37,18 @@ public class ApiController {
         );
     }
 
+    @RequestMapping("/ok")
+    public String ok() {
+        ServiceInstance serviceInstance = loadBalancerClient.choose("zuul-gateway-static");
+        log.info("url:"+serviceInstance.getUri());
+        log.info("url:"+serviceInstance.getServiceId());
+
+        String url = serviceInstance.getUri().toString()+"/health/status";
+        log.info("realUrl:"+url);
+        return restTemplate.getForObject(
+                url, String.class
+        );
+    }
+
 
 }

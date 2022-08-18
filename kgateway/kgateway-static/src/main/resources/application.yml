@@ -8,6 +8,22 @@ spring:
           uri: "http://www.example.com/"
           predicates:
             - Path=/abc/**
+        - id: lb-info
+          uri: lb://consul-server-producer
+          predicates:
+            - Path=/info/**
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+    consul:
+      discovery:
+        service-name: zuul-gateway-static
+        health-check-path: /health/status
+        prefer-ip-address: true
+        ip-address: 127.0.0.1
+      host: localhost
+      port: 8500
 server:
   port: 10011
   address: 127.0.0.1

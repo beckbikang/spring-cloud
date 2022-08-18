@@ -4,8 +4,11 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.websocket.server.PathParam;
 
 /**
  * @program: spring-cloud
@@ -19,8 +22,8 @@ public class UserController {
     private ObjectMapper mapper = new ObjectMapper();
 
 
-    @RequestMapping("/info")
-    public String info()  throws JsonProcessingException {
+    @RequestMapping("/info/{age}")
+    public String info(@PathVariable(value= "age") int age)  throws JsonProcessingException {
 
         @Data
         class User {
@@ -29,7 +32,7 @@ public class UserController {
         }
         User user = new User();
         user.setName("tom");
-        user.setAge(21);
+        user.setAge(age);
         return mapper.writeValueAsString(user);
     }
 }
