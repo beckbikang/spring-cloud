@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: zuul-gateway-static
+  cloud:
+    gateway:
+      routes:
+        - id: test1
+          uri: "http://www.example.com/"
+          predicates:
+            - Path=/abc/**
+server:
+  port: 10011
+  address: 127.0.0.1
+debug: true
+management:
+    endpoint:
+      gateway:
+        enabled: true
+    endpoints:
+      web:
+        exposure:
+          include: "*"
+logging:
+  config: classpath:logback-spring.xml
+
+
+
+#eureka.instance.ip-address=127.0.0.1
+#eureka.client.serviceUrl.defaultZone=http://tom:123456@localhost:9010/eureka/
+#eureka.instance.preferIpAddress=true
+#eureka.instance.instance-id=${spring.application.name}:${server.address}:${server.port}
+#eureka.client.healthcheck.enabled=true
+#eureka.instance.lease-expiration-duration-in-seconds=20
+#eureka.instance.lease-renewal-interval-in-seconds=15
+
+
+
+
+

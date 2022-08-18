@@ -19,6 +19,7 @@
         <module>ksharding</module>
         <module>khystrix</module>
         <module>kzuul</module>
+        <module>kgateway</module>
     </modules>
 
 
