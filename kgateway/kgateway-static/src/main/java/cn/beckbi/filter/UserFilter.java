@@ -1,11 +1,9 @@
 package cn.beckbi.filter;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import cn.beckbi.util.JsonUtil;
 import lombok.Builder;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cloud.client.loadbalancer.ResponseData;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
@@ -17,7 +15,6 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -39,7 +36,6 @@ public class UserFilter implements GlobalFilter, Ordered {
 
     private static final String BAD_CID = "123";
 
-    private ObjectMapper mapper = new ObjectMapper();
 
     @Override
     public int getOrder(){
@@ -60,10 +56,6 @@ public class UserFilter implements GlobalFilter, Ordered {
         }
 
 
-
-
-
-
         if (matchFilter) {
             ServerHttpResponse serverHttpResponse = exchange.getResponse();
             Resp resp = Resp.builder()
@@ -71,7 +63,7 @@ public class UserFilter implements GlobalFilter, Ordered {
                     .msg("非法请求")
                     .build();
             DataBuffer dataBuffer = serverHttpResponse.bufferFactory().wrap(
-                    this.getJsonBytes(resp)
+                    JsonUtil.getJsonBytes(resp)
             );
             serverHttpResponse.setStatusCode(HttpStatus.UNAUTHORIZED);
             serverHttpResponse.getHeaders().add("Content-Type", "application/json; charset=utf-8");
@@ -83,14 +75,6 @@ public class UserFilter implements GlobalFilter, Ordered {
         return chain.filter(exchange);
     }
 
-    private byte[] getJsonBytes(Object o) {
-        try {
-            return mapper.writeValueAsBytes(o);
-        }catch (JsonProcessingException e) {
-            log.error("json error", e);
-        }
-        return "".getBytes();
-    }
 
 
 }

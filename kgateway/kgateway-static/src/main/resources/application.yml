@@ -40,6 +40,10 @@ spring:
           filters:
             - RemoveRequestHeader=from2
             - AddRequestHeader=from,abc
+            - name: Retry
+              args:
+                retries: 2
+                series: SERVER_ERROR
             - name: Login
               args:
                 checkLogin: true
