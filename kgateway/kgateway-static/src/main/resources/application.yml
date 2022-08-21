@@ -5,13 +5,61 @@ spring:
     gateway:
       routes:
         - id: test1
-          uri: "http://www.example.com/"
+          uri: http://www.example.com/
           predicates:
             - Path=/abc/**
+          filters:
+            - AddRequestHeader=from,abc
+        - id: pathInfo
+          uri: http://www.example.com/
+          predicates:
+            - Path=/abcd/{segment}
+        - id: queryInfo
+          uri: http://www.example.com/
+          predicates:
+            - Query=foo,bb
+        - id: methodnfo
+          uri: http://www.example.com/
+          predicates:
+            - Method=DELETE
+        - id: headinfo
+          uri: http://www.example.com/
+          predicates:
+            - Header=x-ragnar-traceid,[\w\d]+
+        - id: grayinfo
+          uri: http://www.baidu.com/
+          predicates:
+            - Path=/eee/**
+            - name: Gray
+              args:
+                grayStatus: true
         - id: lb-info
           uri: lb://consul-server-producer
           predicates:
             - Path=/info/**
+          filters:
+            - RemoveRequestHeader=from2
+            - AddRequestHeader=from,abc
+            - name: Login
+              args:
+                checkLogin: true
+            - name: RequestRateLimiter
+              args:
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+                key-resolver: "#{@apiKeyResolver}"
+        - id: statusFilter
+          uri: http://www.example.com/
+          predicates:
+            - Query=foo,b1
+          filters:
+            - SetStatus=401
+        - id: redictFilter
+          uri: http://www.example.com/
+          predicates:
+            - Query=foo,b2
+          filters:
+            - RedirectTo=302,http://weibo.com
       discovery:
         locator:
           enabled: true
@@ -24,6 +72,19 @@ spring:
         ip-address: 127.0.0.1
       host: localhost
       port: 8500
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    connect-timeout: 100ms
+    timeout: 500ms
+    jedis:
+      pool:
+        max-active: 200
+        min-idle: 10
+        max-idle: 20
+        max-wait: 10000ms
+
 server:
   port: 10011
   address: 127.0.0.1
