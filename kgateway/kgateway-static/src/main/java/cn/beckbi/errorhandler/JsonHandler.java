@@ -58,16 +58,18 @@ public class JsonHandler implements ErrorWebExceptionHandler {
         }
 
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
-        if (ex instanceof ResponseStatusException) {
-            response.setStatusCode(((ResponseStatusException) ex).getStatus());
-        }
+
 
         ServerHttpRequest request = exchange.getRequest();
         String rawQuery = request.getURI().getRawQuery();
         String query = StringUtils.hasText(rawQuery) ? "?" + rawQuery : "";
         String path = request.getPath() + query ;
         String message ;
-        HttpStatus status = determineStatus(ex);
+        HttpStatus status = null;
+        if (ex instanceof ResponseStatusException) {
+            status = ((ResponseStatusException) ex).getStatus();
+        }
+
         if (status == null){
             status = HttpStatus.INTERNAL_SERVER_ERROR;
         }
@@ -90,14 +92,6 @@ public class JsonHandler implements ErrorWebExceptionHandler {
                     DataBufferFactory bufferFactory = response.bufferFactory();
                     return bufferFactory.wrap(JsonUtil.getJsonBytes(msg));
                 }));
-    }
-
-    @Nullable
-    protected HttpStatus determineStatus(Throwable ex) {
-        if (ex instanceof ResponseStatusException) {
-            return ((ResponseStatusException) ex).getStatus();
-        }
-        return null;
     }
 
 
