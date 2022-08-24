@@ -9,7 +9,7 @@ spring:
           lower-case-service-id: true
     consul:
       discovery:
-        service-name: zuul-gateway-static
+        service-name: zuul-gateway-dynamic
         health-check-path: /health/status
         prefer-ip-address: true
         ip-address: 127.0.0.1

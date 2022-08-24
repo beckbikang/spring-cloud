@@ -3,6 +3,7 @@ package cn.beckbi.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,15 +20,18 @@ import reactor.core.publisher.Mono;
 @RequestMapping("/health")
 public class HealthController {
 
+
+
     @Autowired
-    private RedisTemplate redisTemplate;
+    StringRedisTemplate stringRedisTemplate;
 
     @GetMapping("/status")
     public Mono<String> hello(){
         final String key = "aaaaa";
-        redisTemplate.opsForValue().set(key, "1111111");
-        log.info("value:"+redisTemplate.opsForValue().get(key));
+        String oldValue = stringRedisTemplate.opsForValue().get(key);
+        stringRedisTemplate.opsForValue().set(key, "1111111");
+        log.info("value:"+stringRedisTemplate.opsForValue().get(key));
 
-        return  Mono.fromSupplier(()-> "ok");
+        return  Mono.fromSupplier(()-> "ok"+oldValue);
     }
 }

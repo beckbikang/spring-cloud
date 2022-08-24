@@ -27,13 +27,13 @@ public class RedisRouteDefinitionRepository implements RouteDefinitionRepository
     private static final String GATEWAY_ROUTE = "SPRING_CLOUD_GATEWAY_ROUTE_LIST";
 
     @Autowired
-    private RedisTemplate redisTemplate;
+    private StringRedisTemplate stringRedisTemplate;
 
 
     @Override
     public Flux<RouteDefinition> getRouteDefinitions() {
         List<RouteDefinition> routeDefinitionList = new ArrayList<>();
-        redisTemplate.opsForHash().values(GATEWAY_ROUTE).stream().forEach(route -> {
+        stringRedisTemplate.opsForHash().values(GATEWAY_ROUTE).forEach(route -> {
             routeDefinitionList.add(JSON.parseObject(route.toString(), RouteDefinition.class));
         });
         return Flux.fromIterable(routeDefinitionList);
@@ -42,7 +42,7 @@ public class RedisRouteDefinitionRepository implements RouteDefinitionRepository
     @Override
     public Mono<Void> save(Mono<RouteDefinition> route) {
         return route.flatMap(routeDefinition -> {
-            redisTemplate.opsForHash().put(GATEWAY_ROUTE, routeDefinition.getId(), JSON.toJSONString(routeDefinition));
+            stringRedisTemplate.opsForHash().put(GATEWAY_ROUTE, routeDefinition.getId(), JSON.toJSONString(routeDefinition));
             return Mono.empty();
         });
     }
@@ -50,8 +50,8 @@ public class RedisRouteDefinitionRepository implements RouteDefinitionRepository
     @Override
     public Mono<Void> delete(Mono<String> routeId) {
         return routeId.flatMap(id->{
-            if(redisTemplate.opsForHash().hasKey(GATEWAY_ROUTE, id)){
-                redisTemplate.opsForHash().delete(GATEWAY_ROUTE, id);
+            if(stringRedisTemplate.opsForHash().hasKey(GATEWAY_ROUTE, id)){
+                stringRedisTemplate.opsForHash().delete(GATEWAY_ROUTE, id);
                 return Mono.empty();
             }else {
                 return Mono.defer(() -> Mono.error(new Exception("routeDefinition not found:" + routeId)));
