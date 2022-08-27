@@ -10,6 +10,51 @@ server host
 http://127.0.0.1:6010/
 
 
+## zipkin
+
+运行zipkin
+
+```
+java curl -sSL https://zipkin.io/quickstart.sh | bash -s
+java -jar zipkin.jar
+```
+
+sleuth
+
+- 生成各类traceid
+
+zipkin支持
+
+- 写入消息队列然后再收集
+- 支持定时任务
+- 支持内存存储，数据库和es存储
+
+
+代码改动
+
+配置
+
+```
+spring.zipkin.base-url=http://localhost:9411
+spring.sleuth.sampler.probability=1.0
+```
+
+在前面的基础上加上
+
+```
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+            <version>2.2.8.RELEASE</version>
+        </dependency>
+```
+
+![image.png](https://ask.qcloudimg.com/http-save/yehe-3594240/afc466f3d30ffca2dd727946510f18a9.png)
 
 
 
@@ -39,3 +84,5 @@ http://127.0.0.1:6010/
 * sleuth作为链路追踪
 * spring-admin作为微服务的监控
 * spring-security作为服务之间的安全校验
+
+
