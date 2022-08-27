@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: admin-client
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:10800
+        username: lili
+        password: 123456
+server:
+  port: 10801
+  address: 127.0.0.1
+debug: true
+management:
+    endpoints:
+      web:
+        exposure:
+          include: "*"
+    endpoint:
+      health:
+        show-details: always
+logging:
+  config: classpath:logback-spring.xml
+  file:
+    path: /tmp/admin-client
+
+
+
+

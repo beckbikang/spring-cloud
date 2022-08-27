@@ -20,6 +20,7 @@
         <module>khystrix</module>
         <module>kzuul</module>
         <module>kgateway</module>
+        <module>kadmin</module>
     </modules>
 
 
