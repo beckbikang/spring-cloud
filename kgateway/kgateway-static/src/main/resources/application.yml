@@ -4,6 +4,10 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: test0
+          uri: http://www.example.com/
+          predicates:
+            - Path=/fff/eee,/fff/eee/*
         - id: test1
           uri: http://www.example.com/
           predicates:
