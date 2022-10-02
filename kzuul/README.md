@@ -70,6 +70,12 @@ zuul.routes.userinfo.customSensitiveHeaders=true
 
 
 
+6. zuul实现接口文档化
+
+运行 zuul-eureka,zuul-user,zuul-gateway即可
+http://127.0.0.1:9011/swagger-ui.html#/user-controller/infoUsingGET
+
+
 
 
 
