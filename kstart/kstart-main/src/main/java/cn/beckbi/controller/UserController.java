@@ -4,10 +4,13 @@ package cn.beckbi.controller;
 import cn.beckbi.build.id.IdMaker;
 import cn.beckbi.response.IdData;
 import cn.beckbi.response.Result;
+import cn.beckbi.service.GuavaCacheService;
+import cn.beckbi.service.RedisCacheService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,11 +36,11 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 public class UserController {
 
-    private final ObjectMapper mapper =new ObjectMapper();
+    @Autowired
+    private RedisCacheService redisCacheService;
 
-
-    @Resource
-    private IdMaker idMaker;
+    @Autowired
+    private GuavaCacheService guavaCacheService;
 
     @ApiOperation(value = "查询用户")
     @ApiImplicitParams({
@@ -48,7 +51,7 @@ public class UserController {
     public Result<IdData> info2(@RequestParam(name = "uid") long uid) {
         IdData idData = new IdData();
         idData.setUid(uid);
-        idData.setId(idMaker.getId());
+        idData.setId(guavaCacheService.getId(uid));
         return Result.<IdData>builder().code(0).result(idData).build();
     }
 
@@ -57,7 +60,23 @@ public class UserController {
     public IdData info(@PathVariable long uid) {
         IdData idData = new IdData();
         idData.setUid(uid);
-        idData.setId(idMaker.getId());
+        idData.setId(guavaCacheService.getId(uid));
+        return idData;
+    }
+
+    @GetMapping("/user/s/{uid}")
+    public IdData slaveInfo(@PathVariable long uid) {
+        IdData idData = new IdData();
+        idData.setUid(uid);
+        idData.setId(redisCacheService.slaveGetId(uid));
+        return idData;
+    }
+
+    @GetMapping("/user/m/{uid}")
+    public IdData mastInfo(@PathVariable long uid) {
+        IdData idData = new IdData();
+        idData.setUid(uid);
+        idData.setId(redisCacheService.masterGetId(uid));
         return idData;
     }
 }

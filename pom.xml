@@ -21,6 +21,7 @@
         <module>kzuul</module>
         <module>kgateway</module>
         <module>kadmin</module>
+        <module>kapollo</module>
     </modules>
 
 
