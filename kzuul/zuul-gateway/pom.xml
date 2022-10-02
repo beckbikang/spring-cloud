@@ -11,6 +11,8 @@
 
     <artifactId>zuul-gateway</artifactId>
 
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -26,6 +28,7 @@
             <groupId>org.springframework.retry</groupId>
             <artifactId>spring-retry</artifactId>
         </dependency>
+
 
 
     </dependencies>
