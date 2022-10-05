@@ -1,0 +1,17 @@
+
+elasticjob:
+  tracing:
+    type: RDB
+  regCenter:
+    serverLists: localhost:2181
+    namespace: elasticjob-lite-springboot
+  jobs:
+    simpleJob:
+      elasticJobClass: cn.beckbi.cron.SpringBootSimpleJob
+      cron: 0/5 * * * * ?
+      shardingTotalCount: 3
+      shardingItemParameters: 0=Beijing,1=Shanghai,2=Guangzhou
+  dump:
+    port: 9888
+server:
+  port: 7191
