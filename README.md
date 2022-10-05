@@ -13,6 +13,8 @@
 ## 2 spring-cloud Microservices
 
 - spring-boot-starter  怎么去写一个starter
+- spring-cloud-consul 
+    - 支持consul作为注册中心
 - eureka-server and eureka-client  
     - 多中心的eureka的配置
     - eureka支持认证
@@ -29,6 +31,12 @@
     - zuul的动态路由
 - zipkin和sleuth
     - 做链路追踪
+- spring-cloud-gateway
+    - 基本路由
+    - 动态路由
+- 分布式定时任务
+    - xxl-job
+    - elastic-job
 
 ## 3 Domain Driven Architecture
 
