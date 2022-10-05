@@ -37,6 +37,8 @@
 - 分布式定时任务
     - xxl-job
     - elastic-job
+- 分布式配置中心
+    - apollo
 
 ## 3 Domain Driven Architecture
 
