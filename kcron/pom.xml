@@ -16,6 +16,7 @@
     <groupId>cn.beckbi</groupId>
     <modules>
         <module>kxxljob</module>
+        <module>kelasticjob</module>
     </modules>
 
     <properties>
