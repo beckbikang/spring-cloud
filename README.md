@@ -39,6 +39,7 @@
     - elastic-job
 - 分布式配置中心
     - apollo
+- springboot-admin
 
 ## 3 Domain Driven Architecture
 
